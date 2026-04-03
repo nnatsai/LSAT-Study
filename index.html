@@ -5,286 +5,397 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LSAT Question Types — 7Sage Breakdown</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; background: #f5f4f0; color: #2c2c2a; padding: 2rem 1.5rem; }
-  .page { max-width: 900px; margin: 0 auto; }
-  h1 { font-size: 24px; font-weight: 600; color: #1a1a1a; margin-bottom: 4px; }
-  .subtitle { font-size: 13px; color: #888780; margin-bottom: 24px; }
-
-  /* Section tabs */
-  .section-tabs { display: flex; gap: 0; margin-bottom: 24px; border-radius: 10px; overflow: hidden; border: 1px solid #ddd; width: fit-content; }
-  .section-tab { font-size: 13px; font-weight: 500; padding: 9px 24px; cursor: pointer; background: #fff; color: #888780; border: none; transition: all .15s; }
-  .section-tab:first-child { border-right: 1px solid #ddd; }
-  .section-tab.active { background: #534ab7; color: #fff; }
-
-  /* Stats */
-  .summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 22px; }
-  .stat-card { background: #fff; border-radius: 10px; border: 0.5px solid #ddd; padding: 14px 16px; }
-  .stat-label { font-size: 11px; color: #888780; }
-  .stat-val { font-size: 22px; font-weight: 600; color: #1a1a1a; margin-top: 2px; }
-
-  /* Filters */
-  .filter-row { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 12px; }
-  .filter-btn { font-size: 12px; padding: 5px 13px; border: 1px solid #ccc; border-radius: 20px; background: #fff; color: #5f5e5a; cursor: pointer; transition: all .15s; }
-  .filter-btn:hover { background: #f1efe8; }
-  .filter-btn.active { background: #534ab7; color: #fff; border-color: #534ab7; font-weight: 500; }
-
-  /* Legend */
-  .legend { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 14px; font-size: 12px; color: #888780; }
-  .leg { display: flex; align-items: center; gap: 5px; }
-  .leg-dot { width: 9px; height: 9px; border-radius: 2px; flex-shrink: 0; }
-
-  /* Rows */
-  .section-group-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: #aaa; padding: 12px 0 4px; }
-  .q-row { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 7px; cursor: pointer; transition: background .12s; }
-  .q-row:hover { background: #ece9e0; }
-  .q-name { font-size: 13px; min-width: 210px; }
-  .tier-badge { font-size: 10px; padding: 2px 8px; border-radius: 10px; font-weight: 500; white-space: nowrap; }
-  .tier-HIGH  { background: #eaf3de; color: #3b6d11; }
-  .tier-MID   { background: #faeeda; color: #854f0b; }
-  .tier-LOW   { background: #f1efe8; color: #5f5e5a; }
-  .tier-RARE  { background: #fbeaf0; color: #993556; }
-  .bar-wrap { flex: 1; height: 10px; background: #e5e3da; border-radius: 4px; overflow: hidden; min-width: 60px; }
-  .bar { height: 100%; border-radius: 4px; }
-  .q-avg { font-size: 12px; color: #888780; min-width: 90px; text-align: right; }
-
-  /* Detail panel */
-  .detail-panel { display: none; background: #fafaf8; border: 1px solid #e5e3da; border-radius: 8px; padding: 12px 14px; margin: 2px 0 6px 220px; font-size: 12.5px; line-height: 1.6; color: #444441; }
-  .detail-panel.open { display: block; }
-  .detail-note { margin-bottom: 8px; }
-  .detail-lr-link { font-size: 11px; color: #534ab7; margin-top: 6px; }
-  .tactics-title { font-weight: 600; color: #534ab7; margin-bottom: 4px; }
-  .tactics-list { margin-left: 16px; }
-  .tactics-list li { margin-bottom: 3px; }
-
-  footer { margin-top: 32px; font-size: 11px; color: #bbb; text-align: center; }
-
-  @media (max-width: 600px) {
-    .q-name { min-width: 130px; font-size: 12px; }
-    .summary-grid { grid-template-columns: 1fr 1fr; }
-    .detail-panel { margin-left: 0; }
-  }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; background: #f5f4f0; color: #2c2c2a; padding: 2rem 1.5rem; }
+.page { max-width: 960px; margin: 0 auto; }
+h1 { font-size: 24px; font-weight: 600; color: #1a1a1a; margin-bottom: 4px; }
+.subtitle { font-size: 13px; color: #888780; margin-bottom: 20px; }
+.section-tabs { display: flex; margin-bottom: 20px; border-radius: 10px; overflow: hidden; border: 1px solid #ddd; width: fit-content; }
+.section-tab { font-size: 13px; font-weight: 500; padding: 9px 22px; cursor: pointer; background: #fff; color: #888780; border: none; transition: all .15s; }
+.section-tab:first-child { border-right: 1px solid #ddd; }
+.section-tab.active { background: #534ab7; color: #fff; }
+.summary-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 20px; }
+.stat-card { background: #fff; border-radius: 10px; border: 0.5px solid #ddd; padding: 14px 16px; }
+.stat-label { font-size: 11px; color: #888780; }
+.stat-val { font-size: 20px; font-weight: 600; color: #1a1a1a; margin-top: 2px; }
+.filter-row { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 10px; }
+.filter-btn { font-size: 12px; padding: 5px 13px; border: 1px solid #ccc; border-radius: 20px; background: #fff; color: #5f5e5a; cursor: pointer; }
+.filter-btn:hover { background: #ece9e0; }
+.filter-btn.active { background: #534ab7; color: #fff; border-color: #534ab7; font-weight: 500; }
+.legend { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 10px; font-size: 12px; color: #888780; align-items: center; }
+.leg { display: flex; align-items: center; gap: 4px; }
+.leg-dot { width: 9px; height: 9px; border-radius: 2px; flex-shrink: 0; }
+.col-hdr { display: grid; grid-template-columns: 195px 82px 1fr 78px 108px 36px; gap: 8px; padding: 0 10px 4px; font-size: 10px; color: #aaa; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; }
+.group-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: #bbb; padding: 12px 0 4px; }
+.q-row { display: grid; grid-template-columns: 195px 82px 1fr 78px 108px 36px; align-items: center; gap: 8px; padding: 7px 10px; border-radius: 7px; cursor: pointer; }
+.q-row:hover { background: #ece9e0; }
+.q-name { font-size: 13px; font-weight: 500; display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
+.skip-pill { font-size: 9px; color: #854f0b; background: #faeeda; padding: 1px 5px; border-radius: 6px; font-weight: 600; flex-shrink: 0; }
+.tier-badge { font-size: 10px; padding: 2px 8px; border-radius: 10px; font-weight: 500; text-align: center; }
+.tier-HIGH { background:#eaf3de; color:#3b6d11; }
+.tier-MID  { background:#faeeda; color:#854f0b; }
+.tier-LOW  { background:#f1efe8; color:#5f5e5a; }
+.tier-RARE { background:#fbeaf0; color:#993556; }
+.bar-wrap { height: 9px; background: #e5e3da; border-radius: 4px; overflow: hidden; }
+.bar { height: 100%; border-radius: 4px; }
+.q-avg { font-size: 12px; color: #888780; text-align: right; }
+.diff-badge { font-size: 10px; padding: 2px 7px; border-radius: 10px; font-weight: 500; text-align: center; white-space: nowrap; }
+.d1 { background:#eaf3de; color:#3b6d11; }
+.d2 { background:#e6f1fb; color:#185fa5; }
+.d3 { background:#faeeda; color:#854f0b; }
+.d4 { background:#faece7; color:#993c1d; }
+.d5 { background:#fcebeb; color:#a32d2d; }
+.stars { display: flex; gap: 3px; }
+.star { width: 14px; height: 14px; border-radius: 2px; border: 1.5px solid #ccc; background: #f5f4f0; cursor: pointer; flex-shrink: 0; }
+.star.on { background: #534ab7; border-color: #534ab7; }
+.detail { display: none; background: #fafaf8; border: 1px solid #e5e3da; border-radius: 8px; padding: 14px 16px; margin: 3px 0 8px; font-size: 12.5px; line-height: 1.6; }
+.detail.open { display: block; }
+.stem-box { background: #eeedfe; border-left: 3px solid #534ab7; padding: 8px 12px; border-radius: 0 6px 6px 0; font-style: italic; color: #3c3489; font-size: 12px; margin-bottom: 10px; }
+.detail-note { margin-bottom: 10px; }
+.lr-pill { display: inline-block; font-size: 11px; color: #534ab7; background: #eeedfe; padding: 2px 8px; border-radius: 10px; margin-left: 6px; vertical-align: middle; }
+.detail-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.detail-col-title { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #888780; margin-bottom: 6px; }
+ul.tlist { margin-left: 16px; }
+ul.tlist li { margin-bottom: 4px; }
+ul.trlist { margin-left: 16px; color: #993c1d; }
+ul.trlist li { margin-bottom: 4px; }
+.detail-links { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+.drill-btn { font-size: 11px; color: #185fa5; background: #e6f1fb; padding: 3px 10px; border-radius: 10px; text-decoration: none; }
+.drill-btn:hover { background: #378add; color: #fff; }
+footer { margin-top: 32px; font-size: 11px; color: #bbb; text-align: center; }
+@media(max-width:680px){
+  .q-row,.col-hdr { grid-template-columns: 1fr 72px 72px 30px; }
+  .q-row .bar-wrap,.q-row .q-avg,.q-row .diff-badge,.col-hdr span:nth-child(3),.col-hdr span:nth-child(4),.col-hdr span:nth-child(5) { display:none; }
+  .detail-cols { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
 <div class="page">
+<h1>LSAT Question Types — 7Sage Breakdown</h1>
+<div class="subtitle">Source: 7Sage curriculum &nbsp;·&nbsp; Click any row to expand &nbsp;·&nbsp; Rate your mastery with the stars (saved in your browser)</div>
 
-  <h1>LSAT Question Types — 7Sage Breakdown</h1>
-  <div class="subtitle">Source: 7Sage curriculum &nbsp;·&nbsp; Avg. per section from recent PrepTests &nbsp;·&nbsp; Click any row to expand tactics</div>
-
-  <div class="section-tabs">
-    <button class="section-tab active" id="tab-lr" onclick="switchSection('LR')">Logical Reasoning (LR)</button>
-    <button class="section-tab" id="tab-rc" onclick="switchSection('RC')">Reading Comprehension (RC)</button>
-  </div>
-
-  <div id="stats" class="summary-grid"></div>
-  <div id="filters" class="filter-row"></div>
-  <div class="legend">
-    <span class="leg"><span class="leg-dot" style="background:#639922"></span>High-value (4+/section)</span>
-    <span class="leg"><span class="leg-dot" style="background:#ba7517"></span>Mid (2–4/section)</span>
-    <span class="leg"><span class="leg-dot" style="background:#888780"></span>Low (1–2/section)</span>
-    <span class="leg"><span class="leg-dot" style="background:#d4537e"></span>Rare (&lt;1/section)</span>
-  </div>
-  <div id="list"></div>
-  <footer>Source: 7sage.com/lr-question-types &amp; 7sage.com/rc-question-types</footer>
+<div class="section-tabs">
+  <button class="section-tab active" id="tab-lr" onclick="switchSection('LR')">Logical Reasoning &nbsp;(19 types)</button>
+  <button class="section-tab" id="tab-rc" onclick="switchSection('RC')">Reading Comprehension &nbsp;(13 types)</button>
 </div>
 
+<div id="stats" class="summary-grid"></div>
+<div id="filters" class="filter-row"></div>
+
+<div class="legend">
+  <span class="leg"><span class="leg-dot" style="background:#639922"></span>High-value</span>
+  <span class="leg"><span class="leg-dot" style="background:#ba7517"></span>Mid</span>
+  <span class="leg"><span class="leg-dot" style="background:#888780"></span>Low</span>
+  <span class="leg"><span class="leg-dot" style="background:#d4537e"></span>Rare</span>
+  <span style="margin-left:6px;color:#bbb">|</span>
+  <span style="font-size:11px;color:#aaa">Difficulty:</span>
+  <span class="diff-badge d1">1 Easy</span>
+  <span class="diff-badge d2">2</span>
+  <span class="diff-badge d3">3</span>
+  <span class="diff-badge d4">4</span>
+  <span class="diff-badge d5">5 Hard</span>
+  <span style="margin-left:6px;color:#bbb">|</span>
+  <span style="font-size:11px;color:#aaa">Stars = your mastery (1–5)</span>
+</div>
+
+<div class="col-hdr">
+  <span>Question type</span><span style="text-align:center">Tier</span><span>Frequency</span><span style="text-align:right">Avg/sec</span><span style="text-align:center">Difficulty</span><span>You</span>
+</div>
+
+<div id="list"></div>
+<footer>7sage.com/lr-question-types &nbsp;&amp;&nbsp; 7sage.com/rc-question-types &nbsp;·&nbsp; Progress auto-saved in your browser</footer>
+</div>
 <script>
-const LR = [
-  { name:"Flaw", avg:9.7, group:"Assumptions & flaws", tier:"HIGH",
-    note:"Most common LR type. The argument has broken reasoning — describe exactly why. Common patterns: correlation≠causation, necessary/sufficient confusion, sampling errors, scope shifts.",
-    tactics:["Identify conclusion and premises first","Ask: why doesn't the conclusion follow from the premises?","Recognize named flaw patterns — they repeat across tests","Correct answer must be (1) descriptively accurate AND (2) constitute bad reasoning"] },
-  { name:"Most Strongly Supported", avg:5.3, group:"Inferences", tier:"HIGH",
-    note:"Only ONE answer has any support. Ask which has support — not which is 'most' supported. The conclusion is displaced into the answer choices. Sometimes only 1–2 sentences from the stimulus matter.",
-    tactics:["Take all stimulus statements as 100% true","Connect statements that can be chained together","Prefer weaker language (some/can) over strong (all/always/never)","Stuck between two? Choose the weaker claim"] },
-  { name:"Necessary Assumption", avg:4.0, group:"Assumptions & flaws", tier:"HIGH",
-    note:"The argument must rely on this. Use the Negation Test: negate the answer — if it destroys the argument, it is necessary.",
-    tactics:["Find the gap between premises and conclusion","Apply the negation test to finalists","Prefer weaker answers (some > all)","Correct answer must be assumed, not just helpful"] },
-  { name:"Weaken", avg:3.8, group:"Assumptions & flaws", tier:"HIGH",
-    note:"Attack the argument's assumption or undermine the premise→conclusion link. You don't need to destroy it — just damage it.",
-    tactics:["Identify the conclusion and the gap the argument relies on","Look for answers that introduce an alternative explanation","Correct answer just needs to reduce likelihood, not disprove","Watch for out-of-scope answers that sound relevant but don't touch the gap"] },
-  { name:"Main Conclusion", avg:3.1, group:"Understand structure", tier:"HIGH",
-    note:"Most fundamental LSAT skill. The conclusion is supported by other statements, not supporting them. Premise indicators: because, since, given that. Conclusion indicators: therefore, thus, so.",
-    tactics:["Ask: which statement do the others support?","Use the 'Why?' test — premises answer why the conclusion is true","Wrong answers often describe a premise, sub-conclusion, or go too far","If stuck between two, ask which supports the other — the supported one is the conclusion"] },
-  { name:"Sufficient Assumption", avg:3.0, group:"Assumptions & flaws", tier:"HIGH",
-    note:"The correct answer makes the argument 100% valid — it completely fills the logical gap. Heavy conditional logic. Unlike Necessary Assumption, the answer must guarantee the conclusion.",
-    tactics:["Map the logical gap between premises and conclusion","The answer bridges that gap with no exceptions","Conditional logic is common — diagram if needed","These become easier with strong conditional logic foundations"] },
-  { name:"Parallel Flaw", avg:2.8, group:"Parallel", tier:"MID",
-    note:"Match BOTH the reasoning structure AND the type of flaw. The topic will be completely different. Wrong answers often have right flaw/wrong structure or right structure/no flaw.",
-    tactics:["Identify the flaw in the stimulus first","Summarize the argument's structure abstractly","Eliminate answers where the argument is actually valid","Match flaw type + structural pattern together"] },
-  { name:"Must Be True", avg:2.7, group:"Inferences", tier:"MID",
-    note:"Answer must be 100% proven by the stimulus — stricter than MSS. No assumptions allowed. If there's any scenario where it could be false, it's wrong.",
-    tactics:["Take all statements as true","Look for statements that can be logically combined","Prefer weak answers (some, sometimes) — easier to prove 100%","Strong answers can be correct if stimulus uses conditional logic"] },
-  { name:"Argument Part", avg:2.5, group:"Understand structure", tier:"MID",
-    note:"Identify the role a quoted statement plays: main conclusion, premise, sub-conclusion, background context, or point of concession.",
-    tactics:["Break down the full argument BEFORE focusing on the quoted statement","Ask: does this support others, get supported, or neither?","Wrong answers often misdescribe the conclusion or describe a different part","Abstract answer choices are common — match each element to the stimulus"] },
-  { name:"Strengthen", avg:2.5, group:"Assumptions & flaws", tier:"MID",
-    note:"Support the argument's assumption or add evidence for the conclusion. The correct answer makes the conclusion more likely to follow from the premises.",
-    tactics:["Identify the gap the argument relies on","Look for answers that support the assumption or add corroborating evidence","Correct answer doesn't need to prove the conclusion — just make it more likely","True but irrelevant answers are a common trap"] },
-  { name:"Method of Reasoning", avg:2.4, group:"Understand structure", tier:"MID",
-    note:"Describe how the argument moves from premise to conclusion. Recognize common patterns: rule-application, phenomenon-hypothesis, analogy, generalization, cost-benefit.",
-    tactics:["Identify conclusion and premises first","Try to label the reasoning pattern abstractly","Wrong answers often go beyond what the argument actually says","Match each part of the answer to a specific part of the stimulus"] },
-  { name:"Resolve / Reconcile / Explain", avg:2.0, group:"Other", tier:"MID",
-    note:"The stimulus presents an apparent paradox. The correct answer explains why both sides can be true simultaneously.",
-    tactics:["Identify the two things that seem to contradict each other","The correct answer must explain BOTH parts, not just one","Pre-phrase the type of explanation needed before reading choices","Wrong answers often explain only one side or introduce irrelevant info"] },
-  { name:"Parallel Method of Reasoning", avg:2.0, group:"Parallel", tier:"MID",
-    note:"Match the logical structure — not the content or topic. Abstract the stimulus argument to its skeleton, then find the answer that mirrors it.",
-    tactics:["Abstract: 'All A are B. This is A. Therefore this is B.'","Evaluate answers sentence by sentence — eliminate early","Match strength of conclusion language","Conditional logic is common — diagram the stimulus structure"] },
-  { name:"PSA – Find the Rule", avg:1.5, group:"Principles", tier:"LOW",
-    note:"Find the general principle that justifies the argument's conclusion. Like Sufficient Assumption but the answer is a broader rule.",
-    tactics:["Identify the conclusion and the gap","The principle must apply to this specific situation","Correct answer is usually broader than the stimulus situation","Wrong answers apply to similar but subtly different situations"] },
-  { name:"PSA – Find/Complete Application", avg:1.2, group:"Principles", tier:"LOW",
-    note:"A general principle is given — apply it to a new specific case, or complete an application in the stimulus.",
-    tactics:["Understand the principle's conditions precisely","Map the principle's conditions to the new situation","Answer must follow directly from the principle as stated","Watch for answers that violate a condition or reverse the logic"] },
-  { name:"Point at Issue: Disagree", avg:1.0, group:"Other", tier:"LOW",
-    note:"Two speakers disagree. Find what they specifically disagree about. Both must have an explicit or clearly implied position on the correct answer.",
-    tactics:["Pre-identify each speaker's view before reading choices","Test each answer: Does speaker 1 say X? Does speaker 2 say not-X?","Wrong answers have only one speaker addressing the topic","Both speakers must take a clear position — not just one"] },
-  { name:"Point at Issue: Agree", avg:0.5, group:"Other", tier:"LOW",
-    note:"Less common than disagree. Find what both speakers agree on. Both must have an explicit or clearly implied position.",
-    tactics:["Same logic as disagree but looking for shared ground","Pre-identify areas both speakers would affirm","Wrong answers usually have only one speaker taking a position"] },
-  { name:"Must Be False", avg:0.5, group:"Inferences", tier:"RARE",
-    note:"The opposite of Must Be True. The correct answer is 100% contradicted by the stimulus. Prefer strong answer language here — unlike MBT.",
-    tactics:["Take all stimulus statements as true","The correct answer directly contradicts the stimulus","Prefer strong answers (all, always) — easier to contradict","Watch for trap answers that Must Be True (the opposite mistake)"] },
-  { name:"Evaluate", avg:0.2, group:"Assumptions & flaws", tier:"RARE",
-    note:"Find the question whose answer would either strengthen or weaken the argument. Apply strengthen/weaken thinking.",
-    tactics:["Think: if answered YES vs NO, does it affect the argument?","Both extremes of the answer must matter to the argument","Answers are usually phrased as questions","The best answer is one where both extremes impact the argument differently"] },
+const LR=[
+  {name:"Flaw",avg:9.7,group:"Assumptions & flaws",tier:"HIGH",diff:2,skip:false,
+   stem:"The argument is most vulnerable to criticism on the grounds that it...",
+   url:"https://7sage.com/lr-question-types/#flaw-or-descriptive-weakening",lr:null,
+   note:"Most common LR type. The argument has broken reasoning — describe exactly why. Common patterns: correlation≠causation, necessary/sufficient confusion, sampling errors, scope shifts.",
+   tactics:["Identify conclusion and premises first","Ask: why doesn't the conclusion follow from the premises?","Recognize named flaw patterns — they repeat across tests","Correct answer must be (1) descriptively accurate AND (2) constitute bad reasoning"],
+   traps:["Accurately describes something that isn't actually bad reasoning","Misdescribes the conclusion","Describes what the argument assumes rather than what is flawed"]},
+  {name:"Necessary Assumption",avg:6.4,group:"Assumptions & flaws",tier:"HIGH",diff:3,skip:false,
+   stem:"Which one of the following is an assumption that the argument above requires?",
+   url:"https://7sage.com/lr-question-types/#necessary-assumption",lr:null,
+   note:"The argument must rely on this. Use the Negation Test: negate the answer — if it destroys the argument, it is necessary. Prefer weaker answer choices.",
+   tactics:["Find the gap between premises and conclusion","Apply the negation test to finalists","New concepts in the conclusion are often where the assumption lies","Prefer weaker answers (some > all)"],
+   traps:["Answers that strengthen but aren't actually assumed","Too strong (all instead of some)","Confusing with Sufficient Assumption"]},
+  {name:"Most Strongly Supported",avg:5.3,group:"Inferences",tier:"HIGH",diff:3,skip:false,
+   stem:"Which one of the following is most strongly supported by the information above?",
+   url:"https://7sage.com/lr-question-types/#most-strongly-supported",lr:null,
+   note:"Only ONE answer has any support. Ask which has support — not which is 'most' supported. Conclusion is displaced into the answer choices. Sometimes only 1–2 sentences from the stimulus matter.",
+   tactics:["Take all stimulus statements as 100% true","Connect statements that can be chained together","Prefer weaker language (some/can) over strong (all/always)","Stuck between two? Choose the weaker claim"],
+   traps:["Too-strong language (always, the best, must)","Out-of-scope concepts not in the stimulus","Normative claims from descriptive facts","Relative vs absolute confusion"]},
+  {name:"Weaken",avg:3.8,group:"Assumptions & flaws",tier:"HIGH",diff:2,skip:false,
+   stem:"Which one of the following, if true, most seriously weakens the argument?",
+   url:"https://7sage.com/lr-question-types/#weaken",lr:null,
+   note:"Attack the argument's assumption or undermine the premise→conclusion link. You don't need to destroy it — just damage it.",
+   tactics:["Identify the conclusion and the gap the argument relies on","Look for answers that introduce an alternative explanation","Correct answer just needs to reduce likelihood, not disprove","Out-of-scope answers that sound relevant are a common trap"],
+   traps:["True but irrelevant to this argument's specific gap","Actually strengthens the argument","Confusing weakening with disproving the conclusion"]},
+  {name:"Main Conclusion",avg:3.1,group:"Understand structure",tier:"HIGH",diff:1,skip:false,
+   stem:"Which one of the following most accurately expresses the main conclusion drawn in the argument?",
+   url:"https://7sage.com/lr-question-types/#main-conclusion-or-main-point",lr:null,
+   note:"Most fundamental LSAT skill. The conclusion is supported by other statements, not supporting them. Indicators: therefore, thus, so, hence.",
+   tactics:["Ask: which statement do the others support?","Use the 'Why?' test — premises answer why the conclusion is true","If stuck between two, the supported one is the conclusion","Conclusion can appear anywhere in the stimulus"],
+   traps:["Describes a premise instead of the conclusion","Sub-conclusion mistaken for main conclusion","Goes too far beyond what was stated"]},
+  {name:"Sufficient Assumption",avg:3.0,group:"Assumptions & flaws",tier:"HIGH",diff:4,skip:false,
+   stem:"The conclusion follows logically if which one of the following is assumed?",
+   url:"https://7sage.com/lr-question-types/#sufficient-assumption",lr:null,
+   note:"The correct answer makes the argument 100% valid — it completely fills the logical gap. Heavy conditional logic. Unlike NA, the answer must guarantee the conclusion.",
+   tactics:["Map the logical gap between premises and conclusion","The answer bridges that gap with no exceptions","Conditional logic is very common — diagram if needed","Easier with strong conditional logic foundations"],
+   traps:["Helps but doesn't guarantee the conclusion","Confusing with Necessary Assumption (SA is stronger)","Missing a subtle gap between two premises"]},
+  {name:"Parallel Method of Reasoning",avg:2.8,group:"Parallel",tier:"MID",diff:4,skip:true,
+   stem:"The reasoning in the argument above is most similar to the reasoning in which one of the following?",
+   url:"https://7sage.com/lr-question-types/#parallel-method-of-reasoning",lr:null,
+   note:"Match the logical structure — not the content or topic. Abstract the stimulus argument to its skeleton, then find the answer that mirrors it. Time sink — consider skipping and returning.",
+   tactics:["Abstract: 'All A are B. This is A. Therefore this is B.'","Evaluate answers sentence by sentence — eliminate early","Match strength of conclusion language","Conditional logic is common — diagram the stimulus structure"],
+   traps:["Matching topic instead of structure","Wrong conclusion strength","Skipping steps in the parallel argument"]},
+  {name:"Must Be True",avg:2.7,group:"Inferences",tier:"MID",diff:2,skip:false,
+   stem:"If all of the statements above are true, which of the following must also be true?",
+   url:"https://7sage.com/lr-question-types/#must-be-true",lr:null,
+   note:"Answer must be 100% proven by the stimulus — stricter than MSS. No assumptions allowed. If there's any scenario where it could be false, it's wrong.",
+   tactics:["Take all statements as true","Look for statements that can be logically combined","Prefer weak answers (some, sometimes) — easier to prove 100%","Strong answers can be correct if stimulus uses conditional logic"],
+   traps:["Probably true but not certain","Requires an assumption","Too-strong language when the stimulus doesn't force it"]},
+  {name:"Point at Issue: Disagree",avg:2.5,group:"Other",tier:"MID",diff:3,skip:false,
+   stem:"These statements commit [speaker 1] and [speaker 2] to disagreeing over whether...",
+   url:"https://7sage.com/lr-question-types/#point-at-issue-disagree",lr:null,
+   note:"Two speakers disagree. Both must have an explicit or clearly implied position on the correct answer. Test: one speaker ✅, other ❌.",
+   tactics:["Pre-identify each speaker's view before reading choices","Test each answer: Does speaker 1 say X? Does speaker 2 say not-X?","Both speakers MUST take a clear position","If either speaker is silent on the answer, it's wrong"],
+   traps:["Only one speaker has addressed the topic","Implied but not stated clearly enough","Confusing with the agree version"]},
+  {name:"Argument Part",avg:2.5,group:"Understand structure",tier:"MID",diff:3,skip:false,
+   stem:"Which one of the following most accurately states the role played by the statement [quoted]?",
+   url:"https://7sage.com/lr-question-types/#argument-part",lr:null,
+   note:"Identify the role a quoted statement plays: main conclusion, premise, sub-conclusion, background, or point of concession.",
+   tactics:["Break down the full argument BEFORE focusing on the quoted statement","Ask: does this support others, get supported, or neither?","Match each part of the correct answer to the stimulus","Abstract answer choices — go slow"],
+   traps:["Misdescribes the conclusion","Describes a different part of the stimulus","Gets misled by abstract answer language"]},
+  {name:"Strengthen",avg:2.5,group:"Assumptions & flaws",tier:"MID",diff:2,skip:false,
+   stem:"Which one of the following, if true, most strengthens the argument?",
+   url:"https://7sage.com/lr-question-types/#strengthen",lr:null,
+   note:"Support the argument's assumption or add evidence for the conclusion. Correct answer makes the conclusion more likely to follow from the premises.",
+   tactics:["Identify the gap the argument relies on","Look for answers that support the assumption or add corroborating evidence","Doesn't need to prove — just make more likely","Rule out alternatives or eliminate counterexamples"],
+   traps:["True but irrelevant to this specific gap","Proves rather than supports","Strengthens the wrong part of the argument"]},
+  {name:"Parallel Flaw",avg:2.4,group:"Parallel",tier:"MID",diff:5,skip:true,
+   stem:"The flawed reasoning in which one of the following is most closely parallel to the flawed reasoning in the argument above?",
+   url:"https://7sage.com/lr-question-types/#parallel-flawed-method-of-reasoning",lr:null,
+   note:"Match BOTH the reasoning structure AND the type of flaw. Topic will be completely different. Biggest time sink on the test — skip and return if stuck.",
+   tactics:["Identify the flaw in the stimulus first","Summarize the argument's structure abstractly","Eliminate answers where the argument is actually valid","Match flaw type + structural pattern together"],
+   traps:["Right flaw, wrong structure","Right structure, no flaw","Distracted by topic similarity","Mismatched conclusion strength"]},
+  {name:"Method of Reasoning",avg:2.4,group:"Understand structure",tier:"MID",diff:3,skip:false,
+   stem:"Which of the following most accurately describes a technique of reasoning used in the argument above?",
+   url:"https://7sage.com/lr-question-types/#method-of-reasoning-or-descriptive",lr:null,
+   note:"Describe how the argument moves from premise to conclusion. Recognize common patterns: rule-application, phenomenon-hypothesis, analogy, generalization.",
+   tactics:["Identify conclusion and premises first","Try to label the reasoning pattern abstractly","Match each part of the correct answer to a specific part of the stimulus","If you can't match part of the answer to the stimulus, it's wrong"],
+   traps:["Extreme answers going beyond what the argument says","Hard-to-parse abstract answer choices","Misdescribing what the second speaker said"]},
+  {name:"Resolve / Reconcile / Explain",avg:2.0,group:"Other",tier:"MID",diff:2,skip:false,
+   stem:"Which one of the following, if true, most helps to resolve the apparent paradox described above?",
+   url:"https://7sage.com/lr-question-types/#resolve-reconcile-or-explain",lr:null,
+   note:"The stimulus presents an apparent paradox. The correct answer explains why both sides can simultaneously be true.",
+   tactics:["Identify the two things that seem to contradict each other","The correct answer must explain BOTH parts, not just one","Pre-phrase what kind of explanation would resolve the tension","Wrong answers often explain only one side"],
+   traps:["Explains only one side of the paradox","Deepens rather than resolves the paradox","Introduces irrelevant information"]},
+  {name:"PSA – Find the Rule",avg:1.5,group:"Principles",tier:"LOW",diff:3,skip:false,
+   stem:"Which one of the following principles, if valid, most helps to justify the reasoning above?",
+   url:"https://7sage.com/lr-question-types/#psa-find-the-rule",lr:null,
+   note:"Find the general principle that justifies the argument's conclusion. Like Sufficient Assumption but the answer is a broader rule.",
+   tactics:["Identify the conclusion and the gap","The principle must apply to this specific situation","Correct answer is usually broader than the stimulus situation","Wrong answers apply to similar but subtly different situations"],
+   traps:["Applies to a subtly different situation","True but not applicable here","Reverses the conditional direction of the principle"]},
+  {name:"PSA – Find/Complete Application",avg:1.2,group:"Principles",tier:"LOW",diff:3,skip:false,
+   stem:"Which one of the following best illustrates the principle described above?",
+   url:"https://7sage.com/lr-question-types/#psa-find-or-complete-the-application",lr:null,
+   note:"A general principle is given — apply it to a new specific case, or complete an application in the stimulus.",
+   tactics:["Understand the principle's conditions precisely","Map the principle's conditions to the new situation","Answer must follow directly from the principle as stated","Watch for answers that violate a condition or reverse the logic"],
+   traps:["Violates a condition of the principle","Reverses the logic of the principle","Applies a similar but different principle"]},
+  {name:"Must Be False",avg:0.5,group:"Inferences",tier:"RARE",diff:3,skip:false,
+   stem:"If the statements above are true, which one of the following CANNOT be true?",
+   url:"https://7sage.com/lr-question-types/#must-be-false",lr:null,
+   note:"Opposite of Must Be True. Correct answer is 100% contradicted by the stimulus. Prefer strong answer language here — unlike MBT.",
+   tactics:["Take all stimulus statements as true","The correct answer directly contradicts the stimulus","Prefer strong answers (all, always) — easier to contradict","Watch for trap answers that Must Be True"],
+   traps:["Accidentally answering as if it's a Must Be True question","Could be false but isn't definitely false","Missing a counterexample to a conditional claim"]},
+  {name:"Point at Issue: Agree",avg:0.2,group:"Other",tier:"RARE",diff:3,skip:false,
+   stem:"The dialogue provides the most support for the claim that [speaker 1] and [speaker 2] agree about...",
+   url:"https://7sage.com/lr-question-types/#point-at-issue-agree",lr:null,
+   note:"Less common. Find what both speakers agree on. Both must have an explicit or clearly implied position. Correct answer: both speakers ✅✅ or both ❌❌.",
+   tactics:["Same logic as disagree but looking for shared ground","Pre-identify areas both speakers would affirm or both deny","Wrong answers have only one speaker taking a position"],
+   traps:["Only one speaker addressing the topic","Confusing agree with disagree version","One speaker is silent on the issue"]},
+  {name:"Evaluate",avg:0.2,group:"Assumptions & flaws",tier:"RARE",diff:3,skip:false,
+   stem:"The answer to which one of the following questions most helps in evaluating the argument?",
+   url:"https://7sage.com/lr-question-types/#evaluate",lr:null,
+   note:"Find the question whose answer would either strengthen or weaken the argument. Both extremes of the answer must matter.",
+   tactics:["Think: if answered YES vs NO, does it affect the argument?","Both extremes must impact the argument differently","Answers are usually phrased as questions","Follow the same approach as strengthen/weaken questions"],
+   traps:["Question whose answer only helps in one direction","Irrelevant questions that don't touch the gap","Confusing with Strengthen/Weaken format"]},
 ];
 
-const RC = [
-  { name:"Implied", avg:15.5, group:"Stated & Implied", tier:"HIGH",
-    note:"The dominant RC question type — over half the section. Find what the passage strongly implies but doesn't directly state. Like MSS in LR: look for what's well-supported, not just possible.",
-    tactics:["Rely on your understanding of the main point and low-res paragraph summaries","Go back to the passage if you know where to look","Wrong answers often sound reasonable but aren't stated, or twist/reverse what is stated","Be careful with extreme answers — check they're truly supported before choosing"] },
-  { name:"Stated", avg:6.7, group:"Stated & Implied", tier:"HIGH",
-    note:"Find what the passage directly says. Simpler in principle — the answer is explicitly in the text — but wrong answers are crafted to sound right while slightly distorting what was said.",
-    tactics:["Go back to the passage — the answer is there","Locate the relevant section using your low-res summary","Wrong answers often (1) sound reasonable but aren't stated, or (2) twist the original","Be precise: the answer must be what the passage actually says, not just consistent with it"] },
-  { name:"Main Point", avg:3.5, group:"Overall structure", tier:"HIGH",
-    note:"What is the author's central argument or purpose? Like LR's Main Conclusion but applied to a full passage. Keep in mind the passage style — is the author critiquing, explaining, or advocating?",
-    tactics:["Ask: what would the author say if they had 10 seconds?","Think about the whole passage like an LR stimulus — what's the author's view?","Consider passage style: critique, explanation, problem/solution, or showcase","Wrong answers often describe only a supporting point, go too far, or include something unsupported"] },
-  { name:"Purpose in Context", avg:3.0, group:"Internal structure", tier:"HIGH",
-    note:"Why did the author include a specific word, phrase, or sentence? What role does it play in the argument?",
-    tactics:["Rely on your low-res summary of the paragraph containing the element","Ask about the relationship of that element to the paragraph and main point","Wrong answers often describe the purpose of a different element in the passage","Match to what the author is doing at that point in the passage"] },
-  { name:"Meaning in Context", avg:2.3, group:"Internal structure", tier:"MID",
-    note:"What does a specific word or phrase mean as the author uses it in this passage? The dictionary definition is often a trap.",
-    tactics:["Rely on your low-res summary of the paragraph it appears in","Ask: what relationship does this word have to its surrounding context?","Define referential words and phrases (it, this, these) before evaluating answers","Wrong answers match the dictionary definition but ignore the author's actual usage"] },
-  { name:"Purpose of Passage", avg:1.8, group:"Overall structure", tier:"MID",
-    note:"Why did the author write the entire passage? Different from Main Point — this is about the author's intent, not just the content.",
-    tactics:["Ask whether the author's goal is to persuade or to inform","Keep passage style in mind: critique, explanation, solution, or showcase","Wrong answers describe something the author does in the passage, but not the overall motivation","Wrong answers also describe the purpose of just one paragraph, not the whole passage"] },
-  { name:"RC Analogy", avg:1.7, group:"Other", tier:"MID",
-    note:"Find the answer that is most analogous to something described in the passage. Like Parallel Reasoning in LR — match the key elements, not the topic.",
-    tactics:["Define upfront the key elements required to be analogous","Ask about the broader point supported by the part you're asked about","Wrong answers often meet some but not all key elements","Process of elimination is common — correct answers are hard to predict"] },
-  { name:"Application", avg:1.1, group:"Other", tier:"LOW",
-    note:"Apply a concept from the passage to a new situation. Find which answer choice best illustrates or exemplifies something described in the passage.",
-    tactics:["Define the key elements required to constitute an example of the concept","Check that the answer meets ALL key elements, not just some","Wrong answers often meet some but not all of the criteria","Most similar to PSA – Find/Complete Application in LR"] },
-  { name:"Author's Attitude", avg:1.1, group:"Stated & Implied", tier:"LOW",
-    note:"What is the author's tone or stance toward something mentioned in the passage? Watch out for answers that go too far in either direction.",
-    tactics:["First ask: is the author positive, negative, or neutral toward the subject?","Then gauge the degree — skeptical vs. dismissive, supportive vs. enthusiastic","Wrong answers often take the author's opinion too far (e.g. 'rejects' when author was only 'skeptical')","Most similar to Most Strongly Supported in LR"] },
-  { name:"Purpose of Paragraph", avg:0.8, group:"Internal structure", tier:"LOW",
-    note:"What role does a specific paragraph play in the passage as a whole? What is the author trying to accomplish with it?",
-    tactics:["Rely on your low-res paragraph summaries","Ask about the paragraph's relationship to the main point","Wrong answers describe what the author does in the paragraph, not why","Wrong answers also describe the purpose of a different paragraph"] },
-  { name:"Describe Organization", avg:0.6, group:"Overall structure", tier:"LOW",
-    note:"Describe how the passage is structured from start to finish. Answers are long — eliminate quickly once any part is inaccurate.",
-    tactics:["Rely on your low-res summaries for each paragraph","Answers tend to be long — eliminate as soon as one part is wrong","Wrong answers often leave out a key part of the passage","Process of elimination is essential — correct answers are hard to predict"] },
-  { name:"WSE (Weaken/Strengthen/Evaluate)", avg:1.8, group:"Other", tier:"MID",
-    note:"Applied to the passage instead of an LR stimulus. Strengthens, weakens, or identifies a question whose answer would affect a position argued in the passage.",
-    tactics:["Apply the same approach as LR Strengthen/Weaken questions","Identify what argument or position in the passage you're affecting","Wrong answers strengthen or weaken a different claim than what's asked","For Evaluate: both extremes of the answer must matter to the passage's argument"] },
-  { name:"Logical Continuation", avg:0.0, group:"Other", tier:"RARE",
-    note:"Extremely rare. What sentence would most logically conclude the final paragraph? The answer must fit the flow of reasoning at the end of the passage.",
-    tactics:["Rely on your low-res summaries and understanding of the main point","The answer must fit with the specific point being made at the passage's end","Wrong answers sound like something the author supports, but don't fit the ending flow","Process of elimination is common"] },
+const RC=[
+  {name:"Implied",avg:15.5,group:"Stated & Implied",tier:"HIGH",diff:3,skip:false,
+   stem:"Which one of the following is most strongly implied by the passage? / Which one of the following statements is most strongly supported by the passage?",
+   url:"https://7sage.com/rc-question-types/#implied",lr:"Most Strongly Supported",
+   note:"The dominant RC question type — over half the section. Find what the passage strongly implies but doesn't directly state. Like MSS in LR.",
+   tactics:["Rely on your main point and low-res paragraph summaries","Go back to the passage if you know where to look","Wrong answers often sound reasonable but aren't stated, or twist/reverse what was said","Be careful with extreme answers — verify they're truly supported"],
+   traps:["Sounds reasonable but isn't actually stated","Twists, reverses, or goes beyond what was stated","Extreme language the passage doesn't support"]},
+  {name:"Stated",avg:6.7,group:"Stated & Implied",tier:"HIGH",diff:1,skip:false,
+   stem:"The passage indicates which of the following? / According to the passage...",
+   url:"https://7sage.com/rc-question-types/#stated",lr:"Must Be True",
+   note:"Find what the passage directly says. The answer is explicitly in the text — but wrong answers subtly distort what was said.",
+   tactics:["Go back to the passage — the answer is literally there","Locate the relevant section using your low-res summaries","Wrong answers often slightly misstate what the passage says","Be precise: stated, not just consistent with the passage"],
+   traps:["Sounds right but slightly mischaracterizes the passage","True in general but not stated in this passage","Goes slightly beyond what was directly stated"]},
+  {name:"Main Point",avg:3.5,group:"Overall structure",tier:"HIGH",diff:2,skip:false,
+   stem:"Which one of the following most accurately states the main point of the passage?",
+   url:"https://7sage.com/rc-question-types/#main-point",lr:"Main Conclusion",
+   note:"What is the author's central argument or purpose? Think about the whole passage like an LR stimulus. Keep the passage style in mind.",
+   tactics:["Ask: what would the author say if they had 10 seconds?","Think about the whole passage like an LR stimulus — what's the author's view?","Consider passage style: critique, explanation, problem/solution, showcase","The correct answer doesn't need to summarize everything — just capture the author's perspective"],
+   traps:["Describes only a supporting point, not the main point","Takes the author's opinion too far","Includes something unsupported or from only one paragraph"]},
+  {name:"Purpose in Context",avg:3.0,group:"Internal structure",tier:"HIGH",diff:3,skip:false,
+   stem:"The author mentions [X] primarily in order to... / The author's discussion of [X] serves primarily to...",
+   url:"https://7sage.com/rc-question-types/#purpose-in-context-of-word-phrase-or-idea",lr:"Argument Part",
+   note:"Why did the author include a specific word, phrase, or sentence? What role does it play at that point in the argument?",
+   tactics:["Rely on your low-res summary of the paragraph containing the element","Ask about the relationship of that element to the paragraph and main point","Match to what the author is doing at that specific point","Wrong answers describe purpose of a different element"],
+   traps:["Describes purpose of a different word/phrase/sentence","Describes what the element says rather than why it's there","Too broad — describes the purpose of the whole passage"]},
+  {name:"Meaning in Context",avg:2.3,group:"Internal structure",tier:"MID",diff:3,skip:false,
+   stem:"Which one of the following most closely expresses the author's intended meaning in using the word [X]?",
+   url:"https://7sage.com/rc-question-types/#meaning-in-context-of-word-phrase-or-idea",lr:"Argument Part",
+   note:"What does a word/phrase mean as the author uses it here? The dictionary definition is the most common trap.",
+   tactics:["Rely on your low-res summary of the paragraph it appears in","Ask: what relationship does this word have to its surrounding context?","Define referential words (it, this, these) before evaluating answers","Contextual meaning matters, not dictionary definition"],
+   traps:["Dictionary definition that ignores the author's actual usage","Meaning that fits the word generally but not in this context","Contradicts the author's point at that moment"]},
+  {name:"Purpose of Passage",avg:1.8,group:"Overall structure",tier:"MID",diff:2,skip:false,
+   stem:"The primary purpose of the passage is to...",
+   url:"https://7sage.com/rc-question-types/#purpose-of-passage",lr:"Main Conclusion",
+   note:"Why did the author write this passage? Distinct from Main Point — this is about the author's intent, not just the content.",
+   tactics:["Ask: is the author's goal to persuade or to inform?","Keep passage style in mind: critique, explanation, solution, or showcase","Wrong answers describe what the author does, not the overall motivation","Wrong answers also describe purpose of just one paragraph"],
+   traps:["Describes something author does, not the overall motivation","Describes purpose of only one paragraph","Confuses Main Point (what) with Purpose (why)"]},
+  {name:"WSE (Weaken/Strengthen/Evaluate)",avg:1.8,group:"Other",tier:"MID",diff:3,skip:false,
+   stem:"Which one of the following, if true, would most weaken/strengthen the argument in the passage?",
+   url:"https://7sage.com/rc-question-types/#wse",lr:"Weaken / Strengthen",
+   note:"Applied to the passage instead of an LR stimulus. Same strategy as LR Weaken/Strengthen — identify what you're affecting and target the gap.",
+   tactics:["Apply the same approach as LR Strengthen/Weaken questions","Identify what argument or position in the passage you're affecting","For Evaluate: both extremes of the answer must matter","Wrong answers affect a different claim than what's asked"],
+   traps:["Affecting a different claim than what's asked","Strengthening when asked to weaken, or vice versa","Relevant to the passage generally but doesn't touch the specific gap"]},
+  {name:"RC Analogy",avg:1.7,group:"Other",tier:"MID",diff:4,skip:false,
+   stem:"Which one of the following is most analogous to [concept/process described in the passage]?",
+   url:"https://7sage.com/rc-question-types/#rc-analogy",lr:"Parallel Method of Reasoning",
+   note:"Find what is most analogous to something described in the passage. Like Parallel Reasoning in LR — match key elements, not the topic.",
+   tactics:["Define upfront the key elements required to be analogous","Ask about the broader point supported by the part you're asked about","Wrong answers often meet some but not all key elements","Process of elimination is essential here"],
+   traps:["Meets some but not all key elements of the analogy","Matches topic surface but misses structural relationship","Correct conceptually but reverses a key direction"]},
+  {name:"Application",avg:1.1,group:"Other",tier:"LOW",diff:3,skip:false,
+   stem:"According to the passage, which of the following best illustrates the concept of [X]?",
+   url:"https://7sage.com/rc-question-types/#application",lr:"PSA – Find/Complete Application",
+   note:"Apply a concept from the passage to a new situation. The answer must satisfy ALL key elements of how the passage defines that concept.",
+   tactics:["Define the key elements required to constitute an example","Check that the answer meets ALL key elements, not just some","Define the concept precisely before reading the answers","Wrong answers often meet some but not all of the criteria"],
+   traps:["Meets some but not all defining criteria","Applies a related but slightly different concept","Relevant to the topic but not a true example of the concept"]},
+  {name:"Author's Attitude",avg:1.1,group:"Stated & Implied",tier:"LOW",diff:3,skip:false,
+   stem:"The author's attitude toward [X] is most accurately described as...",
+   url:"https://7sage.com/rc-question-types/#authors-attitude",lr:"Most Strongly Supported",
+   note:"What is the author's tone or stance toward something in the passage? Watch out for answers that go too far in either direction.",
+   tactics:["First ask: is the author positive, negative, or neutral?","Then gauge the degree — skeptical vs. dismissive, supportive vs. enthusiastic","Look for hedging language in the passage to calibrate intensity","Wrong answers often take the opinion too far"],
+   traps:["Takes the author's opinion too far (rejects when merely skeptical)","Reverses the valence (positive vs negative)","Neutral passages misread as having a strong opinion"]},
+  {name:"Purpose of Paragraph",avg:0.8,group:"Internal structure",tier:"LOW",diff:2,skip:false,
+   stem:"The main function of the [Nth] paragraph of the passage is to...",
+   url:"https://7sage.com/rc-question-types/#purpose-of-paragraph",lr:"Argument Part",
+   note:"What role does a specific paragraph play in the passage as a whole? Focus on the author's motivation for including it.",
+   tactics:["Rely on your low-res paragraph summaries","Ask about the paragraph's relationship to the main point","Wrong answers describe what the author does in the paragraph, not why","Wrong answers also describe purpose of a different paragraph"],
+   traps:["Describes what happens rather than why the paragraph is there","Describes purpose of a different paragraph","Too specific — focuses on one detail rather than the paragraph's overall role"]},
+  {name:"Describe Organization",avg:0.6,group:"Overall structure",tier:"LOW",diff:3,skip:false,
+   stem:"Which one of the following most accurately describes the organization of the passage?",
+   url:"https://7sage.com/rc-question-types/#describe-organization",lr:"Argument Part",
+   note:"Describe how the passage is structured from start to finish. Answers are long — eliminate quickly once any part is inaccurate.",
+   tactics:["Rely on your low-res summaries for each paragraph","Eliminate as soon as one part of an answer is wrong","Wrong answers often leave out a key part of the passage","Process of elimination is essential here"],
+   traps:["Leaves out a key part of the passage structure","Gets the sequence wrong","Includes something that doesn't happen in the passage"]},
+  {name:"Logical Continuation",avg:0.0,group:"Other",tier:"RARE",diff:3,skip:false,
+   stem:"Which one of the following sentences would most logically conclude the final paragraph of the passage?",
+   url:"https://7sage.com/rc-question-types/#logical-continuation",lr:"Most Strongly Supported",
+   note:"Extremely rare. What sentence would most logically conclude the final paragraph? Must fit the specific reasoning flow at the passage's end.",
+   tactics:["Rely on low-res summaries and understanding of the main point","The answer must fit the specific point being made at the passage's end","Wrong answers sound like something the author supports but don't fit the ending flow","Process of elimination is common"],
+   traps:["Sounds like something the author supports but doesn't fit the ending","Introduces a new topic rather than continuing the thread","Too broad — summarizes the whole passage instead of continuing the final paragraph"]},
 ];
 
-const tierColors = { HIGH:"#639922", MID:"#ba7517", LOW:"#888780", RARE:"#d4537e" };
-const tierLabels = { HIGH:"High-value", MID:"Mid", LOW:"Low", RARE:"Rare" };
+const TC={HIGH:"#639922",MID:"#ba7517",LOW:"#888780",RARE:"#d4537e"};
+const TL={HIGH:"High-value",MID:"Mid",LOW:"Low",RARE:"Rare"};
+const DC=["","d1","d2","d3","d4","d5"];
+const DL=["","Easy","","Medium","Hard","Very hard"];
 
-let currentSection = "LR";
-let currentFilter = "all";
-let openRow = null;
+let sec="LR",filt="all",open=null;
 
-const lrStats = { questions:"~50", sections:"2 scored LR", types:"19 types" };
-const rcStats = { questions:"26–28", sections:"1 scored RC", types:"13 types" };
+function getProg(){try{return JSON.parse(localStorage.getItem("lp")||"{}")}catch(e){return{}}}
+function setProg(n,v){const p=getProg();p[n]=v;try{localStorage.setItem("lp",JSON.stringify(p))}catch(e){}}
 
-const lrFilters = ["All types","HIGH","Assumptions & flaws","Understand structure","Inferences","Principles","Parallel","Other"];
-const rcFilters = ["All types","HIGH","Stated & Implied","Overall structure","Internal structure","Other"];
+function setStars(n,v,evt){evt.stopPropagation();const p=getProg();p[n]=p[n]===v?0:v;try{localStorage.setItem("lp",JSON.stringify(p))}catch(e){}renderList()}
 
-function switchSection(s) {
-  currentSection = s;
-  currentFilter = "all";
-  openRow = null;
-  document.getElementById('tab-lr').classList.toggle('active', s === 'LR');
-  document.getElementById('tab-rc').classList.toggle('active', s === 'RC');
-  renderStats();
-  renderFilters();
-  renderList();
+function starsHtml(n){
+  const v=getProg()[n]||0;
+  return `<div class="stars">`+Array.from({length:5},(_,i)=>
+    `<div class="star ${i<v?"on":""}" onclick="setStars('${n.replace(/'/g,"\\'")}',${i+1},event)" title="${i+1}/5 mastery"></div>`
+  ).join("")+`</div>`;
 }
 
-function renderStats() {
-  const st = currentSection === "LR" ? lrStats : rcStats;
-  document.getElementById('stats').innerHTML = `
-    <div class="stat-card"><div class="stat-label">Questions per section</div><div class="stat-val">${st.questions}</div></div>
-    <div class="stat-card"><div class="stat-label">Section info</div><div class="stat-val">${st.sections}</div></div>
-    <div class="stat-card"><div class="stat-label">Question types</div><div class="stat-val">${st.types}</div></div>`;
-}
+const lrStats={q:"~50 questions",s:"2 scored LR sections",t:"19 question types"};
+const rcStats={q:"26–28 questions",s:"1 scored RC section",t:"13 question types"};
+const lrF=["All","HIGH","Assumptions & flaws","Understand structure","Inferences","Principles","Parallel","Other"];
+const rcF=["All","HIGH","Stated & Implied","Overall structure","Internal structure","Other"];
 
-function renderFilters() {
-  const filters = currentSection === "LR" ? lrFilters : rcFilters;
-  document.getElementById('filters').innerHTML = filters.map((f,i) => {
-    const val = i === 0 ? "all" : f;
-    const active = currentFilter === val ? "active" : "";
-    return `<button class="filter-btn ${active}" onclick="setFilter('${val}',this)">${f}</button>`;
-  }).join('');
-}
+function switchSection(s){sec=s;filt="all";open=null;
+  document.getElementById("tab-lr").classList.toggle("active",s==="LR");
+  document.getElementById("tab-rc").classList.toggle("active",s==="RC");
+  renderStats();renderFilters();renderList();}
 
-function setFilter(f, btn) {
-  currentFilter = f;
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  openRow = null;
-  renderList();
-}
+function renderStats(){const st=sec==="LR"?lrStats:rcStats;
+  document.getElementById("stats").innerHTML=`
+    <div class="stat-card"><div class="stat-label">Questions per section</div><div class="stat-val">${st.q}</div></div>
+    <div class="stat-card"><div class="stat-label">Section info</div><div class="stat-val">${st.s}</div></div>
+    <div class="stat-card"><div class="stat-label">Question types</div><div class="stat-val">${st.t}</div></div>`;}
 
-function toggle(name) {
-  openRow = openRow === name ? null : name;
-  renderList();
-}
+function renderFilters(){const F=sec==="LR"?lrF:rcF;
+  document.getElementById("filters").innerHTML=F.map((f,i)=>{
+    const v=i===0?"all":f;
+    return `<button class="filter-btn ${filt===v?"active":""}" onclick="setFilt('${v}',this)">${f}</button>`;
+  }).join("");}
 
-function renderList() {
-  const data = currentSection === "LR" ? LR : RC;
-  const MAX = currentSection === "LR" ? 10 : 18;
+function setFilt(f,btn){filt=f;open=null;
+  document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
+  btn.classList.add("active");renderList();}
 
-  let rows = data;
-  if (currentFilter === "HIGH") rows = data.filter(d => d.tier === "HIGH");
-  else if (currentFilter !== "all") rows = data.filter(d => d.group === currentFilter);
+function toggle(n){open=open===n?null:n;renderList();}
 
-  let html = "";
-  let lastGroup = null;
-  rows.forEach(d => {
-    const isOpen = openRow === d.name;
-    const pct = Math.min((d.avg / MAX) * 100, 100).toFixed(1);
-    if (d.group !== lastGroup) {
-      html += `<div class="section-group-label">${d.group}</div>`;
-      lastGroup = d.group;
-    }
-    const nameEsc = d.name.replace(/'/g, "\\'");
-    html += `
-      <div class="q-row" onclick="toggle('${nameEsc}')">
-        <span class="q-name">${d.name}</span>
-        <span class="tier-badge tier-${d.tier}">${tierLabels[d.tier]}</span>
-        <div class="bar-wrap"><div class="bar" style="width:${pct}%;background:${tierColors[d.tier]}"></div></div>
-        <span class="q-avg">${d.avg.toFixed(1)} / section</span>
+function renderList(){
+  const data=sec==="LR"?LR:RC;
+  const MAX=sec==="LR"?10:18;
+  let rows=data;
+  if(filt==="HIGH") rows=data.filter(d=>d.tier==="HIGH");
+  else if(filt!=="all") rows=data.filter(d=>d.group===filt);
+  let html="";let lastG=null;
+  rows.forEach(d=>{
+    const isOpen=open===d.name;
+    const pct=Math.min(d.avg/MAX*100,100).toFixed(1);
+    const nk=d.name.replace(/'/g,"\\'");
+    if(d.group!==lastG){html+=`<div class="group-label">${d.group}</div>`;lastG=d.group;}
+    const skipPill=d.skip?`<span class="skip-pill">SKIP-FIRST</span>`:"";
+    const lrPill=d.lr?`<span class="lr-pill">≈ LR: ${d.lr}</span>`:"";
+    html+=`
+      <div class="q-row" onclick="toggle('${nk}')">
+        <div class="q-name">${d.name}${skipPill}</div>
+        <div class="tier-badge tier-${d.tier}">${TL[d.tier]}</div>
+        <div class="bar-wrap"><div class="bar" style="width:${pct}%;background:${TC[d.tier]}"></div></div>
+        <div class="q-avg">${d.avg.toFixed(1)} / sec</div>
+        <div class="diff-badge ${DC[d.diff]}">${d.diff} – ${DL[d.diff]||""}</div>
+        ${starsHtml(d.name)}
       </div>
-      <div class="detail-panel ${isOpen ? 'open' : ''}">
-        <div class="detail-note">${d.note}</div>
-        <div class="tactics-title">Key tactics</div>
-        <ul class="tactics-list">${d.tactics.map(t => `<li>${t}</li>`).join('')}</ul>
+      <div class="detail ${isOpen?"open":""}">
+        <div class="stem-box">"${d.stem}"</div>
+        <div class="detail-note">${d.note}${lrPill}</div>
+        <div class="detail-cols">
+          <div>
+            <div class="detail-col-title">Key tactics</div>
+            <ul class="tlist">${d.tactics.map(t=>`<li>${t}</li>`).join("")}</ul>
+          </div>
+          <div>
+            <div class="detail-col-title">Common wrong answer traps</div>
+            <ul class="trlist">${d.traps.map(t=>`<li>${t}</li>`).join("")}</ul>
+          </div>
+        </div>
+        <div class="detail-links">
+          <a class="drill-btn" href="${d.url}" target="_blank">Practice on 7Sage ↗</a>
+        </div>
       </div>`;
   });
-
-  document.getElementById('list').innerHTML = html;
+  document.getElementById("list").innerHTML=html;
 }
-
-// Init
-renderStats();
-renderFilters();
-renderList();
+switchSection("LR");
 </script>
 </body>
 </html>
