@@ -63,6 +63,25 @@ ul.trlist li { margin-bottom: 4px; }
 .drill-btn { font-size: 11px; color: #185fa5; background: #e6f1fb; padding: 3px 10px; border-radius: 10px; text-decoration: none; }
 .drill-btn:hover { background: #378add; color: #fff; }
 footer { margin-top: 32px; font-size: 11px; color: #bbb; text-align: center; }
+/* Info panel */
+#info-panel { display: none; }
+#info-panel.open { display: block; }
+#dashboard-panel { display: block; }
+#dashboard-panel.hidden { display: none; }
+.info-section { background: #fff; border: 0.5px solid #ddd; border-radius: 12px; padding: 20px 22px; margin-bottom: 14px; }
+.info-section h2 { font-size: 15px; font-weight: 600; color: #1a1a1a; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 0.5px solid #eee; }
+.info-row { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; }
+.info-row:last-child { margin-bottom: 0; }
+.info-icon { width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 15px; }
+.info-body { flex: 1; }
+.info-title { font-size: 13px; font-weight: 600; color: #1a1a1a; margin-bottom: 3px; }
+.info-desc { font-size: 12.5px; color: #5f5e5a; line-height: 1.6; }
+.info-badge-row { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 6px; align-items: center; }
+.info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.tip-card { background: #fafaf8; border: 0.5px solid #e5e3da; border-radius: 8px; padding: 12px 14px; }
+.tip-card-title { font-size: 12px; font-weight: 600; color: #1a1a1a; margin-bottom: 5px; }
+.tip-card-body { font-size: 12px; color: #5f5e5a; line-height: 1.6; }
+@media(max-width:600px){ .info-grid { grid-template-columns: 1fr; } }
 @media(max-width:680px){
   .q-row,.col-hdr { grid-template-columns: 1fr 72px 72px 30px; }
   .q-row .bar-wrap,.q-row .q-avg,.q-row .diff-badge,.col-hdr span:nth-child(3),.col-hdr span:nth-child(4),.col-hdr span:nth-child(5) { display:none; }
@@ -78,8 +97,10 @@ footer { margin-top: 32px; font-size: 11px; color: #bbb; text-align: center; }
 <div class="section-tabs">
   <button class="section-tab active" id="tab-lr" onclick="switchSection('LR')">Logical Reasoning &nbsp;(19 types)</button>
   <button class="section-tab" id="tab-rc" onclick="switchSection('RC')">Reading Comprehension &nbsp;(13 types)</button>
+  <button class="section-tab" id="tab-info" onclick="switchSection('INFO')" style="border-left:1px solid #ddd">How to use this</button>
 </div>
 
+<div id="dashboard-panel">
 <div id="stats" class="summary-grid"></div>
 <div id="filters" class="filter-row"></div>
 
@@ -104,6 +125,171 @@ footer { margin-top: 32px; font-size: 11px; color: #bbb; text-align: center; }
 </div>
 
 <div id="list"></div>
+</div>
+
+<div id="info-panel">
+
+  <div class="info-section">
+    <h2>What is this dashboard?</h2>
+    <div style="font-size:13px;color:#5f5e5a;line-height:1.7;">
+      This is a study reference for every LSAT question type, built from the <strong style="color:#1a1a1a">7Sage curriculum</strong>. The LSAT has two scored sections — Logical Reasoning (LR) and Reading Comprehension (RC) — and this dashboard covers all 32 question types across both. For each type you get the frequency, difficulty, typical question stem, key tactics, and the most common wrong answer traps. Your personal mastery ratings are saved in your browser so they persist every time you open this file.
+    </div>
+  </div>
+
+  <div class="info-section">
+    <h2>The columns explained</h2>
+
+    <div class="info-row">
+      <div class="info-icon" style="background:#eeedfe;">📋</div>
+      <div class="info-body">
+        <div class="info-title">Question type</div>
+        <div class="info-desc">The name of the question type as 7Sage labels it. Some types tagged <span style="font-size:10px;color:#854f0b;background:#faeeda;padding:1px 6px;border-radius:6px;font-weight:600;">SKIP-FIRST</span> are time sinks — on timed sections, skip them and return at the end rather than getting stuck mid-section.</div>
+      </div>
+    </div>
+
+    <div class="info-row">
+      <div class="info-icon" style="background:#eaf3de;">📊</div>
+      <div class="info-body">
+        <div class="info-title">Tier</div>
+        <div class="info-desc">How often this type appears per section, bucketed into four tiers:</div>
+        <div class="info-badge-row">
+          <span class="tier-badge tier-HIGH">High-value</span><span style="font-size:12px;color:#5f5e5a">4+ per section — master these first</span>
+        </div>
+        <div class="info-badge-row">
+          <span class="tier-badge tier-MID">Mid</span><span style="font-size:12px;color:#5f5e5a">2–4 per section — important to know well</span>
+        </div>
+        <div class="info-badge-row">
+          <span class="tier-badge tier-LOW">Low</span><span style="font-size:12px;color:#5f5e5a">1–2 per section — still worth studying</span>
+        </div>
+        <div class="info-badge-row">
+          <span class="tier-badge tier-RARE">Rare</span><span style="font-size:12px;color:#5f5e5a">&lt;1 per section — learn but don't over-invest</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-row">
+      <div class="info-icon" style="background:#e6f1fb;">📈</div>
+      <div class="info-body">
+        <div class="info-title">Frequency bar + avg/section</div>
+        <div class="info-desc">The bar shows frequency relative to the most common type in that section. The number on the right is the average count per section based on recent PrepTests (PTs 140–158 for LR). For example, Flaw averages 9.7 per LR section — that's nearly 40% of the section on its own.</div>
+      </div>
+    </div>
+
+    <div class="info-row">
+      <div class="info-icon" style="background:#faeeda;">⚡</div>
+      <div class="info-body">
+        <div class="info-title">Difficulty rating (1–5)</div>
+        <div class="info-desc">Separate from frequency — this reflects how hard the type is to execute reliably once you've learned it. A rare type can still be very hard (Parallel Flaw = 5), and a common type can be approachable (Main Conclusion = 1). Use this to decide where to focus your drilling effort.</div>
+        <div class="info-badge-row">
+          <span class="diff-badge d1">1 Easy</span>
+          <span class="diff-badge d2">2</span>
+          <span class="diff-badge d3">3 Medium</span>
+          <span class="diff-badge d4">4</span>
+          <span class="diff-badge d5">5 Hard</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-row">
+      <div class="info-icon" style="background:#f1efe8;">⭐</div>
+      <div class="info-body">
+        <div class="info-title">Your mastery stars</div>
+        <div class="info-desc">Five clickable squares that let you rate your own confidence with each type. Click a star to set your level, click the same star again to clear it. Ratings are automatically saved in your browser — they'll still be there the next time you open this file. Use them to track progress over your study period.</div>
+        <div class="info-badge-row" style="gap:4px;margin-top:8px;">
+          <div class="star on" style="cursor:default"></div>
+          <span style="font-size:11px;color:#5f5e5a;margin-left:2px">= 1 star: just started</span>
+        </div>
+        <div class="info-badge-row" style="gap:4px;">
+          <div class="star on" style="cursor:default"></div><div class="star on" style="cursor:default"></div><div class="star on" style="cursor:default"></div>
+          <span style="font-size:11px;color:#5f5e5a;margin-left:2px">= 3 stars: comfortable</span>
+        </div>
+        <div class="info-badge-row" style="gap:4px;">
+          <div class="star on" style="cursor:default"></div><div class="star on" style="cursor:default"></div><div class="star on" style="cursor:default"></div><div class="star on" style="cursor:default"></div><div class="star on" style="cursor:default"></div>
+          <span style="font-size:11px;color:#5f5e5a;margin-left:2px">= 5 stars: mastered</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-section">
+    <h2>What's inside each expanded row</h2>
+    <div class="info-row">
+      <div class="info-icon" style="background:#eeedfe;">💬</div>
+      <div class="info-body">
+        <div class="info-title">Typical question stem</div>
+        <div class="info-desc">The exact phrasing you'll see in the question stem on test day, shown in the purple box at the top. Recognizing the stem instantly is how you switch into the right strategy without wasting time re-reading.</div>
+      </div>
+    </div>
+    <div class="info-row">
+      <div class="info-icon" style="background:#eaf3de;">📝</div>
+      <div class="info-body">
+        <div class="info-title">Overview note</div>
+        <div class="info-desc">A concise description of what the question type is really asking and why it's tricky. For RC types, this also shows the closest LR equivalent — because the same underlying skills transfer between sections.</div>
+      </div>
+    </div>
+    <div class="info-row">
+      <div class="info-icon" style="background:#e6f1fb;">✅</div>
+      <div class="info-body">
+        <div class="info-title">Key tactics</div>
+        <div class="info-desc">Step-by-step approach for attacking the question type. These are the specific mental moves 7Sage recommends — not generic advice, but the actual process experienced test-takers use.</div>
+      </div>
+    </div>
+    <div class="info-row">
+      <div class="info-icon" style="background:#fcebeb;">⚠️</div>
+      <div class="info-body">
+        <div class="info-title">Common wrong answer traps</div>
+        <div class="info-desc">Shown in red — the specific patterns LSAC uses to construct wrong answers for each type. These repeat across PrepTests. Knowing them in advance makes blind review faster and helps you eliminate confidently under time pressure.</div>
+      </div>
+    </div>
+    <div class="info-row">
+      <div class="info-icon" style="background:#e6f1fb;">🔗</div>
+      <div class="info-body">
+        <div class="info-title">Practice on 7Sage link</div>
+        <div class="info-desc">Links directly to the 7Sage drill page for that specific question type. Click it to jump straight into practice questions after reviewing the tactics.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-section">
+    <h2>Suggested study workflow</h2>
+    <div class="info-grid">
+      <div class="tip-card">
+        <div class="tip-card-title">1. Start with High-value types</div>
+        <div class="tip-card-body">Filter to "HIGH" on the LR tab. These 6 types make up the majority of the LR section. Getting them solid before moving on gives you the most score improvement per hour of study.</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-card-title">2. Learn the stems cold</div>
+        <div class="tip-card-body">Expand each row and read the question stem out loud. You should be able to identify the question type within 2–3 seconds of reading the stem on test day, before you even read the stimulus.</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-card-title">3. Drill by type, then by section</div>
+        <div class="tip-card-body">Use the 7Sage drill links to practice each type in isolation first. Once you're consistent, switch to full timed sections so you practice recognizing types under pressure.</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-card-title">4. Use blind review</div>
+        <div class="tip-card-body">After every drill or section, go back through questions you got wrong or weren't confident on. Use the trap list in each row to diagnose exactly which wrong answer pattern caught you.</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-card-title">5. Track your mastery</div>
+        <div class="tip-card-body">Update your stars as you drill. Any type stuck at 1–2 stars is a priority for your next study session. Aim to get all High-value types to 4+ before test day.</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-card-title">6. LR skills transfer to RC</div>
+        <div class="tip-card-body">Check the RC tab — every RC type shows its LR equivalent. If you're strong at MSS in LR, you'll find Implied in RC much easier. Study LR first; RC will follow.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-section">
+    <h2>About the data</h2>
+    <div style="font-size:12.5px;color:#5f5e5a;line-height:1.7;">
+      <p style="margin-bottom:8px">Frequency averages (avg/section) are sourced from the <strong style="color:#1a1a1a">7Sage Quick Reference Guide</strong> based on PrepTests 140–158. These reflect the current digital LSAT format.</p>
+      <p style="margin-bottom:8px">Difficulty ratings (1–5) are based on consensus from 7Sage forum discussions and reflect how hard a type is to execute consistently once learned — not just how confusing it feels at first.</p>
+      <p>The Skip-first flag on Parallel Flaw and Parallel Method of Reasoning reflects 7Sage's recommendation that these are the biggest time sinks per question on the test, and are best attempted after completing easier questions in the section.</p>
+    </div>
+  </div>
+
+</div>
 <footer>7sage.com/lr-question-types &nbsp;&amp;&nbsp; 7sage.com/rc-question-types &nbsp;·&nbsp; Progress auto-saved in your browser</footer>
 </div>
 <script>
@@ -332,7 +518,12 @@ const rcF=["All","HIGH","Stated & Implied","Overall structure","Internal structu
 function switchSection(s){sec=s;filt="all";open=null;
   document.getElementById("tab-lr").classList.toggle("active",s==="LR");
   document.getElementById("tab-rc").classList.toggle("active",s==="RC");
-  renderStats();renderFilters();renderList();}
+  document.getElementById("tab-info").classList.toggle("active",s==="INFO");
+  const dash=document.getElementById("dashboard-panel");
+  const info=document.getElementById("info-panel");
+  if(s==="INFO"){dash.classList.add("hidden");info.classList.add("open");}
+  else{dash.classList.remove("hidden");info.classList.remove("open");renderStats();renderFilters();renderList();}
+}
 
 function renderStats(){const st=sec==="LR"?lrStats:rcStats;
   document.getElementById("stats").innerHTML=`
